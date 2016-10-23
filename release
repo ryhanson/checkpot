@@ -1,0 +1,12 @@
+#!/bin/sh
+
+for OS in "linux" "darwin" "windows"; do
+	GOOS=$OS CGO_ENABLED=0 GOARCH=amd64 go build
+	NAME=checkpot1.0.0$OS-amd64
+	if [ $OS = "windows" ] ; then
+		mv checkpot.exe "$NAME".exe
+	else
+		mv checkpot $NAME
+	fi
+	echo $NAME
+done
